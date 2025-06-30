@@ -24,7 +24,7 @@ struct Convert: ParsableCommand {
     @Flag(name: .long, help: "Overwrite output directory")
     var overwrite = false
 
-    @Flag(name: .long, help: "Ignore attached screenshots")
+    @Flag(name: .long, help: "Ignore attachments")
     var ignoreAttachments = false
 
     func run() throws {
