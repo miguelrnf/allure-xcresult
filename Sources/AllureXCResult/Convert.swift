@@ -24,6 +24,9 @@ struct Convert: ParsableCommand {
     @Flag(name: .long, help: "Overwrite output directory")
     var overwrite = false
 
+    @Flag(name: .long, help: "Ignore attached screenshots")
+    var ignoreAttachments = false
+
     func run() throws {
         print("Converting report '\(input)'...")
         print("Directory for result: \(output)")
@@ -72,8 +75,10 @@ struct Convert: ParsableCommand {
             try creator.write(test: test)
         }
 
-        for attachment in report.attachments {
-            try creator.write(attachment: attachment)
+        if !ignoreAttachments {
+            for attachment in report.attachments {
+                try creator.write(attachment: attachment)
+            }
         }
     }
 }
